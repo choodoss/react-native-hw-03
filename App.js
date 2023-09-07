@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, ImageBackground, Text } from 'react-native';
+import { useFonts } from 'expo-font';
+import RegistrationScreen from './Screens/RegistrationScreen';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'RobotoMedium': require('./src/assets/fonts/Roboto-Medium.ttf'),
+    'RobotoRegular': require('./src/assets/fonts/Roboto-Regular.ttf'),
+    'InterMedium': require('./src/assets/fonts/Inter-Medium.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+
+      <ImageBackground source={require('./src/img/PhotoBG.jpg')} resizeMode="cover" style={styles.image}>
+        <RegistrationScreen />
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    fontFamily: 'RobotoRegular',
+    fontSize: 16,
+  },
+  image: {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'flex-end',
   },
 });
