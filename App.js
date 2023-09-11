@@ -1,6 +1,6 @@
 import { StyleSheet, View, ImageBackground, Text } from 'react-native';
 import { useFonts } from 'expo-font';
-import RegistrationScreen from './Screens/RegistrationScreen';
+import RegistrationScreen from './src/Screens/RegistrationScreen';
 
 export default function App() {
   const [fontsLoaded] = useFonts({

@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, Image, Button } from 'react-native';
 import CustomButton from './components/CustomButton';
 import { useState } from 'react';
+import AddIcon from '../img/svg/add.svg'
 
 export default function RegistrationScreen() {
     const [login, onChangeLogin] = useState('');
@@ -9,6 +10,12 @@ export default function RegistrationScreen() {
 
     return (
         <View style={styles.container}>
+            <View style={styles.ViewImage}>
+                <Image style={styles.AvatarImage} source={require('../img/ava.jpg')} />
+                <View style={styles.ButRemAddPhoto}>
+                    <AddIcon width={25} height={25} />
+                </View>
+            </View>
             <Text style={styles.titleText}>Реєстрація</Text>
             <View style={styles.inputBody}>
                 <TextInput
@@ -42,7 +49,6 @@ export default function RegistrationScreen() {
 
 const styles = StyleSheet.create({
     container: {
-
         marginTop: 40,
         backgroundColor: '#fff',
         borderTopLeftRadius: 25,
@@ -50,6 +56,33 @@ const styles = StyleSheet.create({
         paddingTop: 92,
         paddingHorizontal: 16,
         paddingBottom: 34,
+    },
+    ViewImage: {
+        position: 'absolute',
+        top: '0',
+        left: '50%',
+        width: 120,
+        height: 120,
+        transform: [{ translateX: -44 }, { translateY: -60 }],
+    },
+    AvatarImage: {
+        width: 120,
+        height: 120,
+        resizeMode: 'cover',
+        borderRadius: 16,
+    },
+    ButRemAddPhoto: {
+        position: 'absolute',
+        right: 0,
+        bottom: 16,
+        width: 25,
+        height: 25,
+        transform: [{ translateX: 8 }],
+    },
+    addPhoto: {
+        width: 25,
+        height: 25,
+        transform: [{ rotate: '45deg' }],
     },
     titleText: {
         color: '#212121',
