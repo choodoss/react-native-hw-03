@@ -14,7 +14,7 @@ export default function LoginScreen() {
             <TitleText text={'Увійти'} />
             <View style={styles.inputBody}>
                 <Input type={'email'} onChangeInput={onChangeEmail} value={email} />
-                <Input type={'pass'} onChangeInput={onChangePassword} value={password} />
+                <Input type={'password'} onChangeInput={onChangePassword} value={password} />
             </View>
             <CustomButton text='Увійти' />
             <Pressable>
