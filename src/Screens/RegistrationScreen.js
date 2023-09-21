@@ -1,7 +1,10 @@
-import { StyleSheet, Text, View, TextInput, Pressable, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import CustomButton from './components/CustomButton';
 import { useState } from 'react';
 import AddIcon from '../img/svg/add.svg'
+import TitleText from './components/TitleText';
+import Input from './components/Input';
+import WightWrapper from './components/WightWrapper';
 
 export default function RegistrationScreen() {
     const [login, onChangeLogin] = useState('');
@@ -9,33 +12,18 @@ export default function RegistrationScreen() {
     const [password, onChangePassword] = useState('');
 
     return (
-        <View style={styles.container}>
+        <WightWrapper style={styles.wightWrapper} type={'registration'}>
             <View style={styles.ViewImage}>
                 <Image style={styles.AvatarImage} source={require('../img/ava.jpg')} />
                 <View style={styles.ButRemAddPhoto}>
-                    <AddIcon width={25} height={25} />
+                    <AddIcon style={styles.addPhoto} />
                 </View>
             </View>
-            <Text style={styles.titleText}>Реєстрація</Text>
+            <TitleText text={'Реєстрація'} />
             <View style={styles.inputBody}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeLogin}
-                    placeholder='Логін'
-                    value={login}
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeEmail}
-                    placeholder='Адреса електронної пошти'
-                    value={email}
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangePassword}
-                    placeholder='Пароль'
-                    value={password}
-                />
+                <Input type={'login'} onChangeInput={onChangeLogin} value={login} />
+                <Input type={'email'} onChangeInput={onChangeEmail} value={email} />
+                <Input type={'pass'} onChangeInput={onChangePassword} value={password} />
             </View>
             <CustomButton text='Зареєстуватися' />
             <Pressable>
@@ -43,19 +31,13 @@ export default function RegistrationScreen() {
                     <Text style={[styles.link, { color: pressed ? '#FF6C00' : '#1B4371' }]}>Вже є акаунт? Увійти</Text>
                 )}
             </Pressable >
-        </View>
+        </WightWrapper>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: 40,
-        backgroundColor: '#fff',
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
+    wightWrapper: {
         paddingTop: 92,
-        paddingHorizontal: 16,
-        paddingBottom: 34,
     },
     ViewImage: {
         position: 'absolute',
@@ -80,26 +62,11 @@ const styles = StyleSheet.create({
         transform: [{ translateX: 8 }],
     },
     addPhoto: {
+        fill: '#FF6C00',
+        stroke: '#FF6C00',
         width: 25,
         height: 25,
         transform: [{ rotate: '45deg' }],
-    },
-    titleText: {
-        color: '#212121',
-        textAlign: 'center',
-        fontFamily: 'RobotoMedium',
-        fontSize: 30,
-        letterSpacing: 0.3,
-        marginBottom: 33,
-    },
-    input: {
-        color: '#BDBDBD',
-        padding: 16,
-        width: '100%',
-        height: 50,
-        borderColor: '#E8E8E8',
-        borderRadius: 10,
-        backgroundColor: '#F6F6F6',
     },
     inputBody: {
         flexGrow: 1,
