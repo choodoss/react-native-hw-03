@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import CustomButton from './components/CustomButton';
 import { useState } from 'react';
 import AddIcon from '../img/svg/add.svg'
@@ -7,9 +7,13 @@ import Input from './components/Input';
 import WightWrapper from './components/WightWrapper';
 
 export default function RegistrationScreen() {
-    const [login, onChangeLogin] = useState('');
-    const [email, onChangeEmail] = useState('');
-    const [password, onChangePassword] = useState('');
+    const [login, setChangeLogin] = useState('');
+    const [email, setChangeEmail] = useState('');
+    const [password, setChangePassword] = useState('');
+
+    const ChangeLogin = (e) => {
+        console.log(e)
+    }
 
     return (
         <WightWrapper style={styles.wightWrapper} type={'registration'}>
@@ -20,11 +24,12 @@ export default function RegistrationScreen() {
                 </View>
             </View>
             <TitleText text={'Реєстрація'} />
-            <View style={styles.inputBody}>
-                <Input type={'login'} onChangeInput={onChangeLogin} value={login} />
-                <Input type={'email'} onChangeInput={onChangeEmail} value={email} />
-                <Input type={'pass'} onChangeInput={onChangePassword} value={password} />
-            </View>
+            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}
+                style={styles.inputBody}>
+                <Input type={'login'} onChangeInput={ChangeLogin} value={login} />
+                <Input type={'email'} onChangeInput={setChangeEmail} value={email} />
+                <Input type={'password'} onChangeInput={setChangePassword} value={password} />
+            </KeyboardAvoidingView>
             <CustomButton text='Зареєстуватися' />
             <Pressable>
                 {({ pressed }) => (
@@ -80,3 +85,4 @@ const styles = StyleSheet.create({
         marginBottom: 45,
     }
 });
+
