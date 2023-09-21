@@ -9,6 +9,8 @@ export default function Input({ type, onChangeInput, value }) {
             onChangeText={onChangeInput}
             placeholder={typeINput}
             value={value}
+            autoCompleteType={type !== 'login' ? type : 'off'}
+            secureTextEntry={type === 'password'}
         />
     );
 };
