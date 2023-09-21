@@ -1,7 +1,6 @@
 import { StyleSheet, View, } from 'react-native';
 
 export default function WightWrapper({ children, type }) {
-    console.log(type)
     return (
         <View style={[styles.container, { paddingTop: type === 'registration' ? 92 : 32 }]} >
             {children}

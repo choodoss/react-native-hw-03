@@ -10,11 +10,14 @@ export default function RegistrationScreen() {
     const [login, setChangeLogin] = useState('');
     const [email, setChangeEmail] = useState('');
     const [password, setChangePassword] = useState('');
+    const [ishowPass, setIsShowPass] = useState(false);
 
-    const ChangeLogin = (e) => {
+    const switchShowPass = () => {
+        setIsShowPass((prevValue) => !prevValue)
+    }
+    const ChangeLogin = () => {
         console.log(e)
     }
-
     return (
         <WightWrapper style={styles.wightWrapper} type={'registration'}>
             <View style={styles.ViewImage}>
@@ -28,7 +31,14 @@ export default function RegistrationScreen() {
                 style={styles.inputBody}>
                 <Input type={'login'} onChangeInput={ChangeLogin} value={login} />
                 <Input type={'email'} onChangeInput={setChangeEmail} value={email} />
-                <Input type={'password'} onChangeInput={setChangePassword} value={password} />
+                <View style={styles.paswordWiew}>
+                    <Input type={'password'} ishowPass={ishowPass} onChangeInput={setChangePassword} value={password} />
+                    <Pressable onPress={switchShowPass} style={styles.passWiewButton}>
+                        {({ pressed }) =>
+                            (<Text style={[styles.passWiewButtonText, { color: pressed ? '#FF6C00' : '#1B4371' }]}>{ishowPass ? 'Сховати' : 'Показати'}</Text>)
+                        }
+                    </Pressable >
+                </View>
             </KeyboardAvoidingView>
             <CustomButton text='Зареєстуватися' />
             <Pressable>
@@ -83,6 +93,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 16,
         marginBottom: 45,
-    }
+    },
+    passWiewButton: {
+        color: '#1B4371',
+    },
+    passWiewButtonText: {
+        position: 'absolute',
+        top: 16,
+        right: 16,
+    },
+    paswordWiew: {
+        position: 'relative',
+        flexDirection: 'row',
+    },
 });
 

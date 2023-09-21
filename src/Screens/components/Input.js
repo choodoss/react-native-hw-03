@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput } from 'react-native';
 
-export default function Input({ type, onChangeInput, value }) {
+export default function Input({ type, onChangeInput, value, ishowPass = false }) {
     const typeINput = type === 'login' ? 'Логін' : type === 'email' ? 'Адреса електронної пошти' : 'Пароль';
 
     return (
@@ -10,7 +10,7 @@ export default function Input({ type, onChangeInput, value }) {
             placeholder={typeINput}
             value={value}
             autoCompleteType={type !== 'login' ? type : 'off'}
-            secureTextEntry={type === 'password'}
+            secureTextEntry={type === 'password' && !ishowPass}
         />
     );
 };
