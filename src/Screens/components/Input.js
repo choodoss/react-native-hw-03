@@ -9,7 +9,7 @@ export default function Input({ type, onChangeInput, value, ishowPass = false })
             onChangeText={onChangeInput}
             placeholder={typeINput}
             value={value}
-            autoCompleteType={type !== 'login' ? type : 'off'}
+            autoComplete={type !== 'login' ? type : 'off'}
             secureTextEntry={type === 'password' && !ishowPass}
         />
     );

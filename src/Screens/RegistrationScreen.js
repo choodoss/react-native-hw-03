@@ -12,13 +12,12 @@ export default function RegistrationScreen() {
     const [password, setChangePassword] = useState('');
     const [ishowPass, setIsShowPass] = useState(false);
 
-    const switchShowPass = () => {
-        setIsShowPass((prevValue) => !prevValue)
-    }
     const ChangeLogin = () => {
-        console.log(e)
+        console.log('e')
     }
+
     return (
+
         <WightWrapper style={styles.wightWrapper} type={'registration'}>
             <View style={styles.ViewImage}>
                 <Image style={styles.AvatarImage} source={require('../img/ava.jpg')} />
@@ -27,17 +26,18 @@ export default function RegistrationScreen() {
                 </View>
             </View>
             <TitleText text={'Реєстрація'} />
-            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}
-                style={styles.inputBody}>
-                <Input type={'login'} onChangeInput={ChangeLogin} value={login} />
-                <Input type={'email'} onChangeInput={setChangeEmail} value={email} />
-                <View style={styles.paswordWiew}>
-                    <Input type={'password'} ishowPass={ishowPass} onChangeInput={setChangePassword} value={password} />
-                    <Pressable onPress={switchShowPass} style={styles.passWiewButton}>
-                        {({ pressed }) =>
-                            (<Text style={[styles.passWiewButtonText, { color: pressed ? '#FF6C00' : '#1B4371' }]}>{ishowPass ? 'Сховати' : 'Показати'}</Text>)
-                        }
-                    </Pressable >
+            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} >
+                <View style={styles.inputBody}>
+                    <Input type={'login'} onChangeInput={ChangeLogin} value={login} />
+                    <Input type={'email'} onChangeInput={setChangeEmail} value={email} />
+                    <View style={styles.paswordWiew}>
+                        <Input type={'password'} ishowPass={ishowPass} onChangeInput={setChangePassword} value={password} />
+                        <Pressable onPress={() => setIsShowPass(!ishowPass)} style={styles.passWiewButton}>
+                            {({ pressed }) =>
+                                (<Text style={[styles.passWiewButtonText, { color: pressed ? '#FF6C00' : '#1B4371' }]}>{ishowPass ? 'Сховати' : 'Показати'}</Text>)
+                            }
+                        </Pressable >
+                    </View>
                 </View>
             </KeyboardAvoidingView>
             <CustomButton text='Зареєстуватися' />

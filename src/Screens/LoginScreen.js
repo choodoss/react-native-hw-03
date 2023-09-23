@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, } from 'react-native';
+import { StyleSheet, Text, View, Pressable, KeyboardAvoidingView, Platform } from 'react-native';
 import CustomButton from './components/CustomButton';
 import { useState } from 'react';
 import TitleText from './components/TitleText';
@@ -6,16 +6,18 @@ import Input from './components/Input';
 import WightWrapper from './components/WightWrapper';
 
 export default function LoginScreen() {
-    const [email, onChangeEmail] = useState('');
-    const [password, onChangePassword] = useState('');
+    const [email, setChangeEmail] = useState('');
+    const [password, setChangePassword] = useState('');
 
     return (
         <WightWrapper>
             <TitleText text={'Увійти'} />
-            <View style={styles.inputBody}>
-                <Input type={'email'} onChangeInput={onChangeEmail} value={email} />
-                <Input type={'password'} onChangeInput={onChangePassword} value={password} />
-            </View>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                <View style={styles.inputBody}>
+                    <Input type={'email'} onChangeInput={setChangeEmail} value={email} />
+                    <Input type={'password'} onChangeInput={setChangePassword} value={password} />
+                </View>
+            </KeyboardAvoidingView >
             <CustomButton text='Увійти' />
             <Pressable>
                 {({ pressed }) => (
