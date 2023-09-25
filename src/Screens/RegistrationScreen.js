@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Image, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Image, KeyboardAvoidingView, Platform, TouchableHighlight } from 'react-native';
 import CustomButton from './components/CustomButton';
 import { useState } from 'react';
 import AddIcon from '../img/svg/add.svg'
@@ -12,8 +12,10 @@ export default function RegistrationScreen() {
     const [password, setChangePassword] = useState('');
     const [ishowPass, setIsShowPass] = useState(false);
 
-    const ChangeLogin = () => {
-        console.log('e')
+    const getData = () => {
+        console.log(login)
+        console.log(email)
+        console.log(password)
     }
 
     return (
@@ -21,14 +23,14 @@ export default function RegistrationScreen() {
         <WightWrapper style={styles.wightWrapper} type={'registration'}>
             <View style={styles.ViewImage}>
                 <Image style={styles.AvatarImage} source={require('../img/ava.jpg')} />
-                <View style={styles.ButRemAddPhoto}>
+                <TouchableHighlight onClick={() => console.log('click')} style={styles.ButRemAddPhoto}>
                     <AddIcon style={styles.addPhoto} />
-                </View>
+                </TouchableHighlight>
             </View>
             <TitleText text={'Реєстрація'} />
             <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} >
                 <View style={styles.inputBody}>
-                    <Input type={'login'} onChangeInput={ChangeLogin} value={login} />
+                    <Input type={'login'} onChangeInput={setChangeLogin} value={login} />
                     <Input type={'email'} onChangeInput={setChangeEmail} value={email} />
                     <View style={styles.paswordWiew}>
                         <Input type={'password'} ishowPass={ishowPass} onChangeInput={setChangePassword} value={password} />
@@ -40,7 +42,7 @@ export default function RegistrationScreen() {
                     </View>
                 </View>
             </KeyboardAvoidingView>
-            <CustomButton text='Зареєстуватися' />
+            <CustomButton onGetData={getData} text='Зареєстуватися' />
             <Pressable>
                 {({ pressed }) => (
                     <Text style={[styles.link, { color: pressed ? '#FF6C00' : '#1B4371' }]}>Вже є акаунт? Увійти</Text>

@@ -9,6 +9,11 @@ export default function LoginScreen() {
     const [email, setChangeEmail] = useState('');
     const [password, setChangePassword] = useState('');
 
+    const getData = () => {
+        console.log(email)
+        console.log(password)
+    }
+
     return (
         <WightWrapper>
             <TitleText text={'Увійти'} />
@@ -18,7 +23,7 @@ export default function LoginScreen() {
                     <Input type={'password'} onChangeInput={setChangePassword} value={password} />
                 </View>
             </KeyboardAvoidingView >
-            <CustomButton text='Увійти' />
+            <CustomButton text='Увійти' onGetData={getData} />
             <Pressable>
                 {({ pressed }) => (
                     <Text style={[styles.link, { color: pressed ? '#FF6C00' : '#1B4371' }]}>Немає акаунту? <Text style={styles.linkWord}>Зареєструватися</Text></Text>
